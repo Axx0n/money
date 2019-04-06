@@ -1,25 +1,25 @@
 public class Money {
 
-    private final int euros;
+    private final int dollars;
     private final int cents;
 
-    public Money(int euros, int cents) {
+    public Money(int dollars, int cents) {
 
         if (cents > 99) {
-            euros += cents / 100;
+            dollars += cents / 100;
             cents %= 100;
         }
 
-        this.euros = euros;
+        this.dollars = dollars;
         this.cents = cents;
     }
     
     public Money plus(Money added) {
-        int euros = this.euros + added.euros();
+        int dollars = this.dollars + added.dollars();
         int cents = this.cents + added.cents();
         
         if(cents > 99) {
-            euros += cents / 100;
+            dollars += cents / 100;
             cents %= 100;
         }
         
@@ -27,33 +27,33 @@ public class Money {
     }
     
     public Money minus(Money subtracted) {
-        int euros = this.euros - subtracted.euros;
+        int dollars = this.dollars - subtracted.dollars;
         int cents = this.cents - subtracted.cents;
         
         if(cents < 0) {
-            euros--;
+            dollars--;
             cents = cents + 100;
         }
         
-        if(euros < 0) {
-            euros = 0;
+        if(dollars < 0) {
+            dollars = 0;
             cents = 0;
         }
         
-        return new Money(euros, cents);
+        return new Money(dollars, cents);
     }
     
     public boolean less(Money compared) {
-        if(this.euros < compared.euros) {
+        if(this.dollars < compared.dollars) {
             return true;
-        } else if (this.euros == compared.euros && this.cents < compared.cents) {
+        } else if (this.dollars == compared.dollars && this.cents < compared.cents) {
             return true;
         }
         return false;           
     }
 
-    public int euros() {
-        return euros;
+    public int dollars() {
+        return dollars;
     }
 
     public int cents() {
@@ -67,7 +67,7 @@ public class Money {
             zero = "0";
         }
 
-        return euros + "." + zero + cents + "e";
+        return dollars + "." + zero + cents + "e";
     }
 
 }
